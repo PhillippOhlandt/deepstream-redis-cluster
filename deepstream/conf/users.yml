@@ -1,0 +1,14 @@
+userA:
+  password: "rCOSZxJrgze2AZdVQh12c6ErDMOG0M+Rx5Yu7S5d91c=GS4SbTQYmoaGwjm2shEobg=="
+  serverData:
+    role: "user"
+  clientData:
+    username: "userA"
+    role: "user"
+backend:
+  password: "rCOSZxJrgze2AZdVQh12c6ErDMOG0M+Rx5Yu7S5d91c=GS4SbTQYmoaGwjm2shEobg=="
+  serverData:
+    role: "backend"
+  clientData:
+    username: "backend"
+    role: "backend"

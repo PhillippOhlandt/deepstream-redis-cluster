@@ -1,0 +1,35 @@
+version: '2'
+services:
+    deepstream:
+        image: deepstreamio/deepstream.io:2.1.2
+        ports:
+            - "6060:6020"
+        volumes:
+            - ./deepstream/conf:/etc/deepstream
+            - ./deepstream/logs:/var/log/deepstream
+        environment:
+            - DS_LOG_LEVEL=DEBUG
+        depends_on:
+            - redis-secondary
+        restart: always
+
+    redis-primary:
+        image: bitnami/redis:latest
+        environment:
+            - REDIS_REPLICATION_MODE=master
+        volumes:
+            - ./_redis-primary:/bitnami/redis
+        restart: always
+
+    redis-secondary:
+        image: bitnami/redis:latest
+        volumes:
+            - ./_redis-secondary:/bitnami/redis
+        depends_on:
+            - redis-primary
+        environment:
+            - REDIS_REPLICATION_MODE=slave
+            - REDIS_MASTER_HOST=redis-primary
+            - REDIS_MASTER_PORT=6379
+        restart: always
+
